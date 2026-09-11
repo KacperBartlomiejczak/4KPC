@@ -1,8 +1,152 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   4KPC Design System v1.0 — tokeny odwzorowane 1:1 z design/design-system.png
+   Nic tutaj nie jest wymyślone: każda wartość ma swój odpowiednik na planszy.
+   ========================================================================== */
+
+@theme {
+  /* -------------------------------------------------------- 02 Color Palette */
+
+  --color-primary-900: #07111f;
+  --color-primary-700: #102a46;
+  --color-primary-500: #1976d2;
+  --color-primary-400: #42a5f5;
+  --color-primary-300: #90caf9;
+
+  --color-secondary-700: #006778;
+  --color-secondary-500: #00b8da;
+  --color-secondary-400: #26c6da;
+  --color-secondary-300: #80deea;
+
+  --color-neutral-950: #05070a;
+  --color-neutral-800: #141a21;
+  --color-neutral-600: #3a4652;
+  --color-neutral-400: #8d99a6;
+  --color-neutral-200: #d8dee4;
+  --color-neutral-100: #eef1f4;
+  --color-neutral-50: #f8fafc;
+
+  /* Semantic / Feedback */
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-error: #dc2626;
+  --color-info: #2563eb;
+
+  /* CTA (Primary Action) */
+  --color-cta: #1976d2;
+  --color-cta-hover: #1565c0;
+  --color-cta-pressed: #0d47a1;
+  --color-cta-disabled: #b7c0c9;
+
+  /* --------------------------------------------------------- 03 Typography */
+
+  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui,
+    sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  --text-display-xl: 72px;
+  --text-display-xl--line-height: 80px;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-l: 64px;
+  --text-display-l--line-height: 72px;
+  --text-display-l--font-weight: 700;
+
+  --text-display-m: 56px;
+  --text-display-m--line-height: 64px;
+  --text-display-m--font-weight: 700;
+
+  --text-heading-xl: 48px;
+  --text-heading-xl--line-height: 56px;
+  --text-heading-xl--font-weight: 700;
+
+  --text-heading-l: 40px;
+  --text-heading-l--line-height: 48px;
+  --text-heading-l--font-weight: 700;
+
+  --text-heading-m: 32px;
+  --text-heading-m--line-height: 40px;
+  --text-heading-m--font-weight: 600;
+
+  --text-heading-s: 24px;
+  --text-heading-s--line-height: 32px;
+  --text-heading-s--font-weight: 600;
+
+  --text-title: 20px;
+  --text-title--line-height: 28px;
+  --text-title--font-weight: 600;
+
+  --text-body-l: 18px;
+  --text-body-l--line-height: 28px;
+  --text-body-l--font-weight: 400;
+
+  --text-body-m: 16px;
+  --text-body-m--line-height: 24px;
+  --text-body-m--font-weight: 400;
+
+  --text-body-s: 14px;
+  --text-body-s--line-height: 20px;
+  --text-body-s--font-weight: 400;
+
+  --text-label-l: 14px;
+  --text-label-l--line-height: 20px;
+  --text-label-l--font-weight: 600;
+
+  --text-label-m: 12px;
+  --text-label-m--line-height: 16px;
+  --text-label-m--font-weight: 600;
+
+  --text-caption: 11px;
+  --text-caption--line-height: 16px;
+  --text-caption--font-weight: 500;
+
+  /* ----------------------------------------------------- 04 Spacing & Grid */
+
+  /* Baza 8 (krok 1 = 4px). Skala z planszy pokrywa się ze skalą Tailwinda:
+     1→p-1 (4)   2→p-2 (8)    3→p-4 (16)   4→p-6 (24)
+     5→p-8 (32)  6→p-10 (40)  7→p-12 (48)  8→p-16 (64)
+     9→p-20 (80) 10→p-24 (96) 11→p-32 (128) 12→p-40 (160) */
+  --spacing: 4px;
+
+  /* Grid System (Desktop 1440–3840) */
+  --grid-columns: 12;
+  --grid-gutter: 32px;
+  --grid-side-margin: 160px;
+  --container-content: 3520px;
+
+  /* -------------------------------------------------------- 05 Border Radius */
+
+  --radius-sm: 4px; /* S */
+  --radius-md: 8px; /* M */
+  --radius-lg: 12px; /* L */
+  --radius-xl: 16px; /* XL */
+  --radius-2xl: 24px; /* 2XL */
+  --radius-full: 999px; /* Full */
+
+  /* ------------------------------------------------------------ 06 Elevation */
+
+  --shadow-level-0: none;
+  --shadow-level-1: 0 2px 8px rgba(5, 7, 10, 0.08);
+  --shadow-level-2: 0 8px 24px rgba(5, 7, 10, 0.12);
+  --shadow-level-3: 0 16px 48px rgba(5, 7, 10, 0.18);
+
+  /* ---------------------------------------------------------- 07 Breakpoints */
+
+  --breakpoint-mobile: 320px; /* 320–767,   4 kolumny,  16px margin */
+  --breakpoint-tablet: 768px; /* 768–1439,  8 kolumn,   48px margin */
+  --breakpoint-desktop: 1440px; /* 1440–3840, 12 kolumn, 160px margin */
+
+  /* --------------------------------------------------------------- 08 Motion */
+
+  --ease-4kpc: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --duration-micro-min: 120ms;
+  --duration-micro-max: 160ms;
+  --duration-component-min: 180ms;
+  --duration-component-max: 240ms;
+  --duration-large-min: 300ms;
+  --duration-large-max: 400ms;
 }
 
 @theme inline {
@@ -10,6 +154,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +171,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
