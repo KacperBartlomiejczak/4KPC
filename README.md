@@ -1,38 +1,65 @@
 # 4KPC
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Aplikacja, która pomaga dobrać komputer pod konkretne potrzeby, budżet
+i zastosowanie — przez rozmowę z asystentem AI albo przez filtry.
 
-## Getting Started
-
-First, run the development server:
+## Uruchomienie
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Strona startuje na [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Trasy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Trasa | Co to jest |
+| --- | --- |
+| `/` | landing page — hero z briefem, podzespoły, gotowe zestawy, asystent AI |
+| `/design-system` | plansza design systemu v1.0, odwzorowanie `design/design-system.png` |
 
-## Learn More
+## Skrypty
 
-To learn more about Next.js, take a look at the following resources:
+| Komenda | Co robi |
+| --- | --- |
+| `npm run dev` | serwer deweloperski |
+| `npm run build` | build produkcyjny |
+| `npm test` | testy (Vitest + Testing Library) |
+| `npm run lint` | ESLint |
+| `npx tsc --noEmit` | kontrola typów |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Struktura
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/app/                  trasy (App Router) — wyłącznie rozkład sekcji
+src/components/landing/   sekcje strony głównej
+src/components/design-system/  komponenty i tokeny design systemu
+src/types/                domena: zod schema + `z.infer` (zero `any`)
+src/lib/                  drobne funkcje pomocnicze (formatowanie)
+public/media/             zdjęcia produktowe — patrz niżej
+```
 
-## Deploy on Vercel
+## Zdjęcia
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sekcje używają komponentu `ImageSlot`: jeśli plik istnieje w `public/`,
+renderuje się przez `next/image`; jeśli nie — w jego miejsce wchodzi gradient
+na tokenach design systemu. Nic nie trzeba przełączać, wystarczy wrzucić plik.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Plik | Gdzie | Proporcja |
+| --- | --- | --- |
+| `public/media/hero-case.jpg` | hero | 4:5 |
+| `public/media/product-gpu.jpg` | karta podzespołu | 16:10 |
+| `public/media/product-cpu.jpg` | karta podzespołu | 16:10 |
+| `public/media/product-ram.jpg` | karta podzespołu | 16:10 |
+| `public/media/product-storage.jpg` | karta podzespołu | 16:10 |
+| `public/media/build-starter.jpg` | karta zestawu | 16:10 |
+| `public/media/build-performance.jpg` | karta zestawu | 16:10 |
+| `public/media/build-ultra.jpg` | karta zestawu | 16:10 |
+| `public/media/brand-landscape.jpg` | tło finalnego CTA | 21:9 |
+
+## Zasady pracy
+
+Konwencje projektu (modelowanie danych, kolejność zod → typ → test →
+implementacja, zero `any`) opisuje [`.AGENTS.md`](.AGENTS.md).
+Plany kolejnych funkcji leżą w [`prompts/`](prompts).
