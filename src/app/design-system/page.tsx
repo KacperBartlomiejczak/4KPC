@@ -15,7 +15,7 @@ import { SpacingGridSection } from "@/components/design-system/sections/SpacingG
 import { TypographySection } from "@/components/design-system/sections/TypographySection";
 
 export const metadata: Metadata = {
-  title: "4KPC — Design System v1.0",
+  title: "Design System v1.0",
   description: "Components for a higher standard.",
 };
 
